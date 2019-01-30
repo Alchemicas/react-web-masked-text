@@ -50,11 +50,11 @@ export interface TextInputMaskOptionProp {
 }
 
 // TextInputMask Props
-export interface TextInputMaskProps extends TextInputProps {
+export interface TextInputMaskProps {
     type: TextInputMaskTypeProp
     options?: TextInputMaskOptionProp
     checkText?: (previous: string, next: string) => boolean
-    onChangeText?: (text: string) => void
+    onChange?: (event: object) => void
     refInput?: (ref: any) => void
     customTextInput?: any
     customTextInputProps?: Object
@@ -87,7 +87,6 @@ export namespace MaskService {
 
 // TextInputMaskMethods
 export class TextInputMaskMethods {
-    getElement(): TextInput
     getRawValue(): string
     isValid(): boolean
 }
@@ -97,7 +96,6 @@ export type TextInputMasked = TextInputMaskMethods | null
 
 // TextMaskMethods
 export class TextMaskMethods {
-    getElement(): TextInput
 }
 
 // TextMaskInstance
