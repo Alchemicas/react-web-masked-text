@@ -1,7 +1,7 @@
 {
-    "name": "react-native-masked-text",
+    "name": "react-web-masked-text",
     "version": "1.10.1",
-    "description": "Text and TextInput with mask for React Native applications",
+    "description": "Text and TextInput with mask for React Web applications",
     "licenses": [
         {
             "type": "MIT",
@@ -14,18 +14,18 @@
         "test": "jest",
         "build": "babel ./rnmt.js ./lib/*.js ./lib/**/*.js -d ./dist",
         "prepublish": "npm test && npm run clean && npm run build",
-        "start": "node node_modules/react-native/local-cli/cli.js start",
-        "ios": "react-native run-ios"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/benhurott/react-native-masked-text.git"
+        "url": "git+https://github.com/Loller79/react-web-masked-text.git"
     },
     "keywords": [
         "mask",
         "text",
         "textinput",
-        "react-native",
+        "input",
+        "span",
+        "react",
         "custom",
         "money"
     ],

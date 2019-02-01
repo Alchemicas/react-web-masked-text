@@ -1,19 +1,21 @@
-# react-native-masked-text
+# react-web-masked-text
 
-![downloads](https://img.shields.io/npm/dt/react-native-masked-text.svg)
-[![Help Contribute to Open Source](https://www.codetriage.com/benhurott/react-native-masked-text/badges/users.svg)](https://www.codetriage.com/benhurott/react-native-masked-text)
+![downloads](https://img.shields.io/npm/dt/react-web-masked-text.svg)
+[![Help Contribute to Open Source](https://www.codetriage.com/benhurott/react-web-masked-text/badges/users.svg)](https://www.codetriage.com/benhurott/react-web-masked-text)
 
 ![logo](docs/res/logo.png)
 
-This is a simple masked text (normal text and input text) component for React-Native.
+This is a simple masked text (normal text and input text) component for React-Web applications, the version that is on this repository has been patched in a simple fashion to work flawlessly with HTML5 elements, it has been tested on the latest version of React which is v16.7.0.
+
+I want to thank and praise the developer of this module which is [Ben-hur Santos Ott](https://github.com/benhurott), who saved me a lot of time in developing a similar algorithm by myself.
 
 ## Supported Versions
 
-React-native: 0.32.0 or higher
+React: v16.7.0 (should work on older versions too)
 
 ## Install
 
-`npm install react-native-masked-text --save`
+`npm install react-web-masked-text --save`
 
 ## Usage (TextInputMask)
 
@@ -21,7 +23,7 @@ React-native: 0.32.0 or higher
 import React, { Component } from 'react'
 
 // import the component
-import { TextInputMask } from 'react-native-masked-text'
+import { TextInputMask } from 'react-web-masked-text'
 
 export default class MyComponent extends Component {
 	constructor(props) {
@@ -34,8 +36,8 @@ export default class MyComponent extends Component {
 		//	   because in this case, the day and the hour is invalid.
 		let valid = this.myDateText.isValid();
 
-		// get converted value. Using type=datetime, it returns the moment object.
-		// If it's using type=money, it returns a Number object.
+		// get converted value. Using kind=datetime, it returns the moment object.
+		// If it's using kind=money, it returns a Number object.
 		let rawValue = this.myDateText.getRawValue();
 	}
 
@@ -44,7 +46,7 @@ export default class MyComponent extends Component {
 		return (
 			<TextInputMask
 				ref={(ref) => this.myDateText = ref}
-				type={'datetime'}
+				kind={'datetime'}
 				options={{
 					format: 'DD-MM-YYYY HH:mm:ss'
 				}}
@@ -68,7 +70,7 @@ _cel-phone_: use the mask `(99) 9999-9999` or `(99) 99999-9999` (changing automa
 _datetime_: use datetime mask with moment format (default DD/MM/YYYY HH:mm:ss). It accepts options (see later in this doc). <br />
 _custom_: use your custom mask (see the options props later in this doc). <br />
 
-#### onChangeText
+#### onChange
 
 Invoked after new value applied to mask.
 
@@ -76,13 +78,13 @@ Invoked after new value applied to mask.
 /**
  * @param {String} text the text AFTER mask is applied.
 */
-onChangeText(text) {
+onChange(event) {
 	// ...
 }
 
 <TextInputMask
-	type={'only-numbers'}
-	onChangeText={this.onChangeText.bind(this)} />
+	kind={'only-numbers'}
+	onChange={this.onChange.bind(this)} />
 ```
 
 #### checkText
@@ -100,7 +102,7 @@ checkText(previous, next) {
 }
 
 <TextInputMask
-	type={'only-numbers'}
+	kind={'only-numbers'}
 	checkText={this.checkText.bind(this)} />
 ```
 
@@ -117,73 +119,18 @@ const Textfield = MKTextField.textfield()
 
 <TextInputMask
 	ref={(ref) => this.myDateText = ref}
-	type={'money'}
+	kind={'money'}
 	style={styles.input}
 	customTextInput={Textfield}
 	placeholder="Enter text to see events"
 />
 ```
 
-#### customTextInputProps
-
-Some custom inputs like [react-native-textinput-effects](https://github.com/halilb/react-native-textinput-effects) have to set properties in mount time. For these types of components we use this property.
-
-```jsx
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-
-import { TextInputMask } from 'react-native-masked-text'
-import { Kaede } from 'react-native-textinput-effects'
-
-export default class App extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      birthday: ''
-    }
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <TextInputMask
-          ref={(ref) => this.myDateText = ref}
-          // here we set the custom component and their props.
-          customTextInput={Kaede}
-          customTextInputProps={{
-            style:{ width: '80%' },
-            label:'Birthday'
-          }}
-
-          type={'datetime'}
-          options={{
-            format: 'DD-MM-YYYY HH:mm:ss'
-          }}
-
-          // don't forget: the value and state!
-          onChangeText={birthday => this.setState({ birthday })}
-          value={this.state.birthday} />
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center'
-	}
-})
-```
-
 #### TextInput Props
 
 You can use the native props of TextInput, with this in mind:
 
--   onChangeText is intercepted by component.
+-   onChange is intercepted by component.
 -   value is intercepted by component.
 -   if you pass keyboardType, it will override the keyboardType of masked component.
 
@@ -204,7 +151,7 @@ export default class App extends React.Component {
                 <View>
                     <TextInputMask
                         ref={ref => (this._myTextInputMask = ref)}
-                        type={'only-numbers'}
+                        kind={'only-numbers'}
                         style={styles.input}
                     />
                 </View>
@@ -223,9 +170,9 @@ export default class App extends React.Component {
 
 #### Options
 
-Some types accept options, use it like this: `<TextInputMask type={'money'} options={{ unit: 'US$' }} />`
+Some types accept options, use it like this: `<TextInputMask kind={'money'} options={{ unit: 'US$' }} />`
 
-**For `type={'money'}`** <br />
+**For `kind={'money'}`** <br />
 
 -   _options={...}_
     -   `precision` (Number, default 2): the decimal places.
@@ -235,13 +182,13 @@ Some types accept options, use it like this: `<TextInputMask type={'money'} opti
     -   `suffixUnit` (String, default ''): the suffix text.
     -   `zeroCents` (Boolean, default false): if must show cents.
 
-**For `type={'cel-phone'}`** <br />
+**For `kind={'cel-phone'}`** <br />
 
 -   _options={...}_
     -   `withDDD` (Boolean, default true): if the ddd will be include in the mask.
     -   `dddMask` (String, default '(99) '): the default mask applied if `withDDD` is true.
 
-**For `type={'datetime'}`** <br />
+**For `kind={'datetime'}`** <br />
 
 -   _options={...}_
     -   `format` (String, default DD/MM/YYYY HH:mm:ss): moment date format. It accepts the following:
@@ -254,7 +201,7 @@ Some types accept options, use it like this: `<TextInputMask type={'money'} opti
     -   HH
     -   _You can use all of dates with `-` instead of `/` if you want_
 
-**For `type={'custom'}`** <br />
+**For `kind={'custom'}`** <br />
 
 -   _options={...}_
 
@@ -311,7 +258,7 @@ Some types accept options, use it like this: `<TextInputMask type={'money'} opti
 }
 ```
 
-**For `type={'credit-card'}`** <br />
+**For `kind={'credit-card'}`** <br />
 
 -   _options={...}_
     -   `obfuscated` (Boolean, default false): if the mask must be `9999 **** **** 9999`.
@@ -349,7 +296,7 @@ Sample usage:
 ```jsx
 import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { TextInputMask } from 'react-native-masked-text'
+import { TextInputMask } from 'react-web-masked-text'
 
 export default class App extends Component {
     state = {
@@ -362,14 +309,14 @@ export default class App extends Component {
                     {/*First, set the reference*/}
                     ref={ref => (this._myDatetimeField = ref)}
                     style={styles.input}
-                    type={'datetime'}
+                    kind={'datetime'}
                     options={{
                         format: 'DD-MM-YYYY HH:mm:ss'
                     }}
                     placeholder={'datetime DD-MM-YYYY HH:mm:ss'}
                     value={this.state.datetime}
-                    onChangeText={datetime => {
-                        this.setState({ datetime })
+                    onChange={event => {
+                        this.setState({ datetime: event.target.value })
 
                         // Now just use =)
                         console.log(this._myDatetimeField.getElement())
@@ -404,7 +351,7 @@ const styles = StyleSheet.create({
 import React, { Component } from 'react'
 
 // import the component
-import { TextMask } from 'react-native-masked-text'
+import { TextMask } from 'react-web-masked-text'
 
 export default class MyComponent extends Component {
     constructor(props) {
@@ -420,7 +367,7 @@ export default class MyComponent extends Component {
         return (
             <TextMask
                 value={this.state.text}
-                type={'credit-card'}
+                kind={'credit-card'}
                 options={{
                     obfuscated: true
                 }}
@@ -463,7 +410,7 @@ If you want, we expose the `MaskService`. You can use it:
 Ex:
 
 ```jsx
-import { MaskService } from 'react-native-masked-text'
+import { MaskService } from 'react-web-masked-text'
 
 var money = MaskService.toMask('money', '123', {
     unit: 'US$',
@@ -473,10 +420,6 @@ var money = MaskService.toMask('money', '123', {
 
 // money -> US$ 1.23
 ```
-
-## Throubleshooting
-
--   If the `es2015` error throw by babel, try run `react-native start --reset-cache`
 
 ## Changelog
 
