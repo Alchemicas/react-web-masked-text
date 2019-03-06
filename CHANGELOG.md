@@ -2,6 +2,28 @@
 
 ## Unreleased
 
+## [1.11.1] - 2019-03-05
+
+### Fixed
+
+- Remove characters in the middle of the mask (Thanks to [rsouthgate](https://github.com/rsouthgate) for the great contribution!)
+  - Fixes [#128](https://github.com/benhurott/react-native-masked-text/issues/128) and [#35](https://github.com/benhurott/react-native-masked-text/issues/35)
+
+## [1.11.0] - 2019-02-23
+
+### Added
+
+- Adding `maskType` to `cel-phone` with options: `BRL` and `INTERNATIONAL`.
+
+### Changed
+
+- New documentation in `README`.
+
+### Removed
+
+- [BREAKING CHANGE] The `zeroCents` option was removed from `money` mask, if you want to not show the cents, use the `precision: 0`.
+
+
 ## [1.10.1] - 2019-01-07
 
 ### Fixed
