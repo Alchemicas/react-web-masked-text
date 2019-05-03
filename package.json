@@ -1,6 +1,6 @@
 {
     "name": "react-web-masked-text",
-    "version": "1.12.2",
+    "version": "1.12.21",
     "description": "Text and TextInput with mask for React Web applications",
     "licenses": [
         {
@@ -40,17 +40,17 @@
         "tinymask": "^1.0.2"
     },
     "devDependencies": {
-        "@types/react-native": "*",
         "@types/react": "*",
+        "@types/react-native": "*",
         "babel-cli": "^6.26.0",
-        "rimraf": "^2.6.2",
-        "react": "16.3.1",
-        "react-native": "0.55.4",
         "babel-jest": "23.4.2",
         "babel-preset-react-native": "4.0.0",
         "jest": "23.5.0",
+        "react": "16.3.1",
+        "react-native": "0.55.4",
+        "react-native-masked-text": "1.9.0",
         "react-test-renderer": "16.3.1",
-        "react-native-masked-text": "1.9.0"
+        "rimraf": "^2.6.2"
     },
     "jest": {
         "preset": "react-native"

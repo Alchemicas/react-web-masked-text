@@ -57,7 +57,7 @@ export interface TextInputMaskProps {
     kind: TextInputMaskTypeProp
     options?: TextInputMaskOptionProp
     checkText?: (previous: string, next: string) => boolean
-    onChangeText?: (text: string, rawText?: string) => void
+    onChange?: (text: string, rawText?: string) => void
     refInput?: (ref: any) => void
     customTextInput?: any
     customTextInputProps?: Object
