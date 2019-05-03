@@ -1,8 +1,8 @@
 import { CreditCardMask } from '../../lib/masks'
 
-test('getType results credit-card', () => {
+test('getKind results credit-card', () => {
     var expected = 'credit-card'
-    var received = CreditCardMask.getType()
+    var received = CreditCardMask.getKind()
 
     expect(received).toBe(expected)
 })

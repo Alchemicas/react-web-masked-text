@@ -9,9 +9,9 @@ function compareMomentObj(dateTimeA, dateTimeB) {
     else return 0
 }
 
-test('getType results datetime', () => {
+test('getKind results datetime', () => {
     var expected = 'datetime'
-    var received = DatetimeMask.getType()
+    var received = DatetimeMask.getKind()
 
     expect(received).toBe(expected)
 })

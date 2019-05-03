@@ -54,7 +54,7 @@ export interface TextInputMaskOptionProp {
 
 // TextInputMask Props
 export interface TextInputMaskProps {
-    type: TextInputMaskTypeProp
+    kind: TextInputMaskTypeProp
     options?: TextInputMaskOptionProp
     checkText?: (previous: string, next: string) => boolean
     onChangeText?: (text: string, rawText?: string) => void
@@ -72,17 +72,17 @@ export class TextMask extends React.Component<TextInputMaskProps> {}
 // MaskService
 export namespace MaskService {
     function toMask(
-        type: string,
+        kind: string,
         value: string,
         options?: TextInputMaskOptionProp
     ): string
     function toRawValue(
-        type: string,
+        kind: string,
         maskedValue: string,
         options?: TextInputMaskOptionProp
     ): string
     function isValid(
-        type: string,
+        kind: string,
         value: string,
         options?: TextInputMaskOptionProp
     ): boolean

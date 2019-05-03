@@ -1,8 +1,8 @@
 import { CelPhoneMask } from '../../lib/masks'
 
-test('getType results cel-phone', () => {
+test('getKind results cel-phone', () => {
     var expected = 'cel-phone'
-    var received = CelPhoneMask.getType()
+    var received = CelPhoneMask.getKind()
 
     expect(received).toBe(expected)
 })

@@ -1,8 +1,8 @@
 import { OnlyNumbersMask } from '../../lib/masks'
 
-test('getType results only-numbers', () => {
+test('getKind results only-numbers', () => {
     var expected = 'only-numbers'
-    var received = OnlyNumbersMask.getType()
+    var received = OnlyNumbersMask.getKind()
 
     expect(received).toBe(expected)
 })

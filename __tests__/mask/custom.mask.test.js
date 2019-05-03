@@ -1,8 +1,8 @@
 import { CustomMask } from '../../lib/masks'
 
-test('getType results custom', () => {
+test('getKind results custom', () => {
     var expected = 'custom'
-    var received = CustomMask.getType()
+    var received = CustomMask.getKind()
 
     expect(received).toBe(expected)
 })

@@ -1,8 +1,8 @@
 import { CnpjMask } from '../../lib/masks'
 
-test('getType results cnpj', () => {
+test('getKind results cnpj', () => {
     var expected = 'cnpj'
-    var received = CnpjMask.getType()
+    var received = CnpjMask.getKind()
 
     expect(received).toBe(expected)
 })

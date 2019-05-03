@@ -1,8 +1,8 @@
 import { MoneyMask } from '../../lib/masks'
 
-test('getType results money', () => {
+test('getKind results money', () => {
     var expected = 'money'
-    var received = MoneyMask.getType()
+    var received = MoneyMask.getKind()
 
     expect(received).toBe(expected)
 })

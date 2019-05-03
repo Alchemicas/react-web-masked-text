@@ -1,8 +1,8 @@
 import { ZipCodeMask } from '../../lib/masks'
 
-test('getType results zip-code', () => {
+test('getKind results zip-code', () => {
     var expected = 'zip-code'
-    var received = ZipCodeMask.getType()
+    var received = ZipCodeMask.getKind()
 
     expect(received).toBe(expected)
 })

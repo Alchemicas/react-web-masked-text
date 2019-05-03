@@ -1,8 +1,8 @@
 import { CpfMask } from '../../lib/masks'
 
-test('getType results cpf', () => {
+test('getKind results cpf', () => {
     var expected = 'cpf'
-    var received = CpfMask.getType()
+    var received = CpfMask.getKind()
 
     expect(received).toBe(expected)
 })
