@@ -1,6 +1,6 @@
 {
     "name": "react-web-masked-text",
-    "version": "1.12.21",
+    "version": "1.12.22",
     "description": "Text and TextInput with mask for React Web applications",
     "licenses": [
         {
